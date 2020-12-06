@@ -23,28 +23,38 @@ namespace ASPNETCore5Demo.Controllers
             return db.Courses.ToList();
         }
 
-        // [HttpGet("{id}")]
-        // public ActionResult<Course> GetCourseById(int id)
-        // {
-        //     return null;
-        // }
+        [HttpGet("{id}")]
+        public ActionResult<Course> GetCourseById(int id)
+        {
+            return db.Courses.Find(id);
+        }
 
-        // [HttpPost("")]
-        // public ActionResult<Course> PostCourse(Course model)
-        // {
-        //     return null;
-        // }
+        [HttpPost("")]
+        public ActionResult<Course> PostCourse(Course model)
+        {
+            db.Courses.Add(model);
+            db.SaveChanges();
+            return Created($"/api/Course/{model.CourseId}",model);
+        }
 
-        // [HttpPut("{id}")]
-        // public IActionResult PutCourse(int id, Course model)
-        // {
-        //     return NoContent();
-        // }
+        [HttpPut("{id}")]
+        public IActionResult PutCourse(int id, Course model)
+        {
+            var course = db.Courses.Find(id);
+            course.Title = model.Title;
+            course.Credits = model.Credits;
 
-        // [HttpDelete("{id}")]
-        // public ActionResult<Course> DeleteCourseById(int id)
-        // {
-        //     return null;
-        // }
+            db.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Course> DeleteCourseById(int id)
+        {
+            Course course = db.Courses.Find(id);
+            db.Courses.Remove(course);
+            db.SaveChanges();
+            return Ok(course);
+        }
     }
 }
