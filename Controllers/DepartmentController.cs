@@ -17,6 +17,12 @@ namespace ASPNETCore5Demo.Controllers
         {
             this.db = db;
         }
+        
+        [HttpGet("empty")]
+        public ActionResult GetEmpty() {
+            throw new Exception();
+            return Ok();
+        }
 
         [HttpGet("")]
         public ActionResult<IEnumerable<Department>> GetDepartments()
