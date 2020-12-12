@@ -10,6 +10,7 @@ namespace ASPNETCore5Demo.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class ErrorController : ControllerBase {
+        [ApiExplorerSettings(IgnoreApi = true)]
         [Route("/error")]
         public IActionResult err() => Problem();
     }
