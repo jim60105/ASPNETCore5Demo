@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 #nullable disable
 
 namespace ASPNETCore5Demo.Models
 {
+    [Authorize]
     public partial class Course
     {
         public Course()

@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASPNETCore5Demo.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASPNETCore5Demo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ContosoUniversityController : ControllerBase
     {
         private readonly ContosoUniversityContext db;
@@ -37,7 +39,7 @@ namespace ASPNETCore5Demo.Controllers
         {
             db.Courses.Add(model);
             db.SaveChanges();
-            return Created($"/api/Course/{model.CourseId}",model);
+            return Created($"/api/Course/{model.CourseId}", model);
         }
 
         [HttpPut("{id}")]
