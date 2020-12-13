@@ -38,6 +38,7 @@ namespace ASPNETCore5Demo.Controllers
 
         private bool ValidUsers(LoginModel model)
         {
+            logger.LogInformation($"User Login: {model.UserName}");
             return true;
         }
     }
